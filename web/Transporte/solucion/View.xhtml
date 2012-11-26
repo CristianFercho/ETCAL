@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSolucionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSolucionLabel_tiquetSolicitud}"/>
+                    <h:outputText value="#{solucionController.selected.tiquetSolicitud}" title="#{bundle.ViewSolucionTitle_tiquetSolicitud}"/>
+                    <h:outputText value="#{bundle.ViewSolucionLabel_descripcion}"/>
+                    <h:outputText value="#{solucionController.selected.descripcion}" title="#{bundle.ViewSolucionTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewSolucionLabel_fecha}"/>
+                    <h:outputText value="#{solucionController.selected.fecha}" title="#{bundle.ViewSolucionTitle_fecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewSolucionLabel_ejecutada}"/>
+                    <h:outputText value="#{solucionController.selected.ejecutada}" title="#{bundle.ViewSolucionTitle_ejecutada}"/>
+                    <h:outputText value="#{bundle.ViewSolucionLabel_solicitud}"/>
+                    <h:outputText value="#{solucionController.selected.solicitud}" title="#{bundle.ViewSolucionTitle_solicitud}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{solucionController.destroyAndView}" value="#{bundle.ViewSolucionDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewSolucionEditLink}"/>
+                <br />
+                <h:commandLink action="#{solucionController.prepareCreate}" value="#{bundle.ViewSolucionCreateLink}" />
+                <br />
+                <h:commandLink action="#{solucionController.prepareList}" value="#{bundle.ViewSolucionShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewSolucionIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

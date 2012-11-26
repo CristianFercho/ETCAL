@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEmpleadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_id}"/>
+                    <h:outputText value="#{empleadoController.selected.id}" title="#{bundle.ViewEmpleadoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_nombre}"/>
+                    <h:outputText value="#{empleadoController.selected.nombre}" title="#{bundle.ViewEmpleadoTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_login}"/>
+                    <h:outputText value="#{empleadoController.selected.login}" title="#{bundle.ViewEmpleadoTitle_login}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_contrasena}"/>
+                    <h:outputText value="#{empleadoController.selected.contrasena}" title="#{bundle.ViewEmpleadoTitle_contrasena}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_eps}"/>
+                    <h:outputText value="#{empleadoController.selected.eps}" title="#{bundle.ViewEmpleadoTitle_eps}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_salario}"/>
+                    <h:outputText value="#{empleadoController.selected.salario}" title="#{bundle.ViewEmpleadoTitle_salario}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_licencia}"/>
+                    <h:outputText value="#{empleadoController.selected.licencia}" title="#{bundle.ViewEmpleadoTitle_licencia}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_genero}"/>
+                    <h:outputText value="#{empleadoController.selected.genero}" title="#{bundle.ViewEmpleadoTitle_genero}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_estadoCivil}"/>
+                    <h:outputText value="#{empleadoController.selected.estadoCivil}" title="#{bundle.ViewEmpleadoTitle_estadoCivil}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_fechaNac}"/>
+                    <h:outputText value="#{empleadoController.selected.fechaNac}" title="#{bundle.ViewEmpleadoTitle_fechaNac}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_cargo}"/>
+                    <h:outputText value="#{empleadoController.selected.cargo}" title="#{bundle.ViewEmpleadoTitle_cargo}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_estado}"/>
+                    <h:outputText value="#{empleadoController.selected.estado}" title="#{bundle.ViewEmpleadoTitle_estado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{empleadoController.destroyAndView}" value="#{bundle.ViewEmpleadoDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewEmpleadoEditLink}"/>
+                <br />
+                <h:commandLink action="#{empleadoController.prepareCreate}" value="#{bundle.ViewEmpleadoCreateLink}" />
+                <br />
+                <h:commandLink action="#{empleadoController.prepareList}" value="#{bundle.ViewEmpleadoShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewEmpleadoIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

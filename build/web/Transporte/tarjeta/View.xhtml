@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTarjetaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTarjetaLabel_pin}"/>
+                    <h:outputText value="#{tarjetaController.selected.pin}" title="#{bundle.ViewTarjetaTitle_pin}"/>
+                    <h:outputText value="#{bundle.ViewTarjetaLabel_costo}"/>
+                    <h:outputText value="#{tarjetaController.selected.costo}" title="#{bundle.ViewTarjetaTitle_costo}"/>
+                    <h:outputText value="#{bundle.ViewTarjetaLabel_tipo}"/>
+                    <h:outputText value="#{tarjetaController.selected.tipo}" title="#{bundle.ViewTarjetaTitle_tipo}"/>
+                    <h:outputText value="#{bundle.ViewTarjetaLabel_estado}"/>
+                    <h:outputText value="#{tarjetaController.selected.estado}" title="#{bundle.ViewTarjetaTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewTarjetaLabel_pasajes}"/>
+                    <h:outputText value="#{tarjetaController.selected.pasajes}" title="#{bundle.ViewTarjetaTitle_pasajes}"/>
+                    <h:outputText value="#{bundle.ViewTarjetaLabel_fecha}"/>
+                    <h:outputText value="#{tarjetaController.selected.fecha}" title="#{bundle.ViewTarjetaTitle_fecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTarjetaLabel_recarga}"/>
+                    <h:outputText value="#{tarjetaController.selected.recarga}" title="#{bundle.ViewTarjetaTitle_recarga}"/>
+                    <h:outputText value="#{bundle.ViewTarjetaLabel_nombreEstacion}"/>
+                    <h:outputText value="#{tarjetaController.selected.nombreEstacion}" title="#{bundle.ViewTarjetaTitle_nombreEstacion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tarjetaController.destroyAndView}" value="#{bundle.ViewTarjetaDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewTarjetaEditLink}"/>
+                <br />
+                <h:commandLink action="#{tarjetaController.prepareCreate}" value="#{bundle.ViewTarjetaCreateLink}" />
+                <br />
+                <h:commandLink action="#{tarjetaController.prepareList}" value="#{bundle.ViewTarjetaShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewTarjetaIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

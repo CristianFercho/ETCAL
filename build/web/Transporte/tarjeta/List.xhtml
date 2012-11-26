@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTarjetaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTarjetaEmpty}" rendered="#{tarjetaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tarjetaController.items.rowCount > 0}">
+                    <h:outputText value="#{tarjetaController.pagination.pageFirstItem + 1}..#{tarjetaController.pagination.pageLastItem + 1}/#{tarjetaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tarjetaController.previous}" value="#{bundle.Previous} #{tarjetaController.pagination.pageSize}" rendered="#{tarjetaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tarjetaController.next}" value="#{bundle.Next} #{tarjetaController.pagination.pageSize}" rendered="#{tarjetaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tarjetaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetaTitle_pin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pin}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetaTitle_costo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.costo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetaTitle_tipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetaTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetaTitle_pasajes}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pasajes}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetaTitle_fecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetaTitle_recarga}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.recarga}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTarjetaTitle_nombreEstacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreEstacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tarjetaController.prepareView}" value="#{bundle.ListTarjetaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tarjetaController.prepareEdit}" value="#{bundle.ListTarjetaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tarjetaController.destroy}" value="#{bundle.ListTarjetaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tarjetaController.prepareCreate}" value="#{bundle.ListTarjetaCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListTarjetaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

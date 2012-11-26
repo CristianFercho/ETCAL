@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateBusTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateBusLabel_matricula}" for="matricula" />
+                    <h:inputText id="matricula" value="#{busController.selected.matricula}" title="#{bundle.CreateBusTitle_matricula}" required="true" requiredMessage="#{bundle.CreateBusRequiredMessage_matricula}"/>
+                    <h:outputLabel value="#{bundle.CreateBusLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{busController.selected.estado}" title="#{bundle.CreateBusTitle_estado}" required="true" requiredMessage="#{bundle.CreateBusRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.CreateBusLabel_AO}" for="AO" />
+                    <h:inputText id="AO" value="#{busController.selected.AO}" title="#{bundle.CreateBusTitle_AO}" required="true" requiredMessage="#{bundle.CreateBusRequiredMessage_AO}"/>
+                    <h:outputLabel value="#{bundle.CreateBusLabel_fabricante}" for="fabricante" />
+                    <h:inputText id="fabricante" value="#{busController.selected.fabricante}" title="#{bundle.CreateBusTitle_fabricante}" required="true" requiredMessage="#{bundle.CreateBusRequiredMessage_fabricante}"/>
+                    <h:outputLabel value="#{bundle.CreateBusLabel_capacidad}" for="capacidad" />
+                    <h:inputText id="capacidad" value="#{busController.selected.capacidad}" title="#{bundle.CreateBusTitle_capacidad}" required="true" requiredMessage="#{bundle.CreateBusRequiredMessage_capacidad}"/>
+                    <h:outputLabel value="#{bundle.CreateBusLabel_cilindrinaje}" for="cilindrinaje" />
+                    <h:inputText id="cilindrinaje" value="#{busController.selected.cilindrinaje}" title="#{bundle.CreateBusTitle_cilindrinaje}" required="true" requiredMessage="#{bundle.CreateBusRequiredMessage_cilindrinaje}"/>
+                    <h:outputLabel value="#{bundle.CreateBusLabel_chasis}" for="chasis" />
+                    <h:inputText id="chasis" value="#{busController.selected.chasis}" title="#{bundle.CreateBusTitle_chasis}" required="true" requiredMessage="#{bundle.CreateBusRequiredMessage_chasis}"/>
+                    <h:outputLabel value="#{bundle.CreateBusLabel_tipoBus}" for="tipoBus" />
+                    <h:inputText id="tipoBus" value="#{busController.selected.tipoBus}" title="#{bundle.CreateBusTitle_tipoBus}" required="true" requiredMessage="#{bundle.CreateBusRequiredMessage_tipoBus}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{busController.create}" value="#{bundle.CreateBusSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{busController.prepareList}" value="#{bundle.CreateBusShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateBusIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

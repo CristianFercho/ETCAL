@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSolicitudTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_ticket}" for="ticket" />
+                    <h:inputText id="ticket" value="#{solicitudController.selected.ticket}" title="#{bundle.EditSolicitudTitle_ticket}" required="true" requiredMessage="#{bundle.EditSolicitudRequiredMessage_ticket}"/>
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_motivo}" for="motivo" />
+                    <h:inputText id="motivo" value="#{solicitudController.selected.motivo}" title="#{bundle.EditSolicitudTitle_motivo}" required="true" requiredMessage="#{bundle.EditSolicitudRequiredMessage_motivo}"/>
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{solicitudController.selected.descripcion}" title="#{bundle.EditSolicitudTitle_descripcion}" required="true" requiredMessage="#{bundle.EditSolicitudRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_hora}" for="hora" />
+                    <h:inputText id="hora" value="#{solicitudController.selected.hora}" title="#{bundle.EditSolicitudTitle_hora}" required="true" requiredMessage="#{bundle.EditSolicitudRequiredMessage_hora}"/>
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{solicitudController.selected.fecha}" title="#{bundle.EditSolicitudTitle_fecha}" required="true" requiredMessage="#{bundle.EditSolicitudRequiredMessage_fecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{solicitudController.selected.estado}" title="#{bundle.EditSolicitudTitle_estado}" required="true" requiredMessage="#{bundle.EditSolicitudRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_solucion}" for="solucion" />
+                    <h:selectOneMenu id="solucion" value="#{solicitudController.selected.solucion}" title="#{bundle.EditSolicitudTitle_solucion}" >
+                        <f:selectItems value="#{solucionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{solicitudController.selected.idUsuario}" title="#{bundle.EditSolicitudTitle_idUsuario}" required="true" requiredMessage="#{bundle.EditSolicitudRequiredMessage_idUsuario}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditSolicitudLabel_nombreEstacion}" for="nombreEstacion" />
+                    <h:selectOneMenu id="nombreEstacion" value="#{solicitudController.selected.nombreEstacion}" title="#{bundle.EditSolicitudTitle_nombreEstacion}" required="true" requiredMessage="#{bundle.EditSolicitudRequiredMessage_nombreEstacion}">
+                        <f:selectItems value="#{estacionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{solicitudController.update}" value="#{bundle.EditSolicitudSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditSolicitudViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{solicitudController.prepareList}" value="#{bundle.EditSolicitudShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditSolicitudIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

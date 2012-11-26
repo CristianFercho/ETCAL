@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListBusTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListBusEmpty}" rendered="#{busController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{busController.items.rowCount > 0}">
+                    <h:outputText value="#{busController.pagination.pageFirstItem + 1}..#{busController.pagination.pageLastItem + 1}/#{busController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{busController.previous}" value="#{bundle.Previous} #{busController.pagination.pageSize}" rendered="#{busController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{busController.next}" value="#{bundle.Next} #{busController.pagination.pageSize}" rendered="#{busController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{busController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBusTitle_matricula}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.matricula}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBusTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBusTitle_AO}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.AO}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBusTitle_fabricante}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fabricante}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBusTitle_capacidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.capacidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBusTitle_cilindrinaje}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cilindrinaje}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBusTitle_chasis}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.chasis}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBusTitle_tipoBus}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoBus}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{busController.prepareView}" value="#{bundle.ListBusViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{busController.prepareEdit}" value="#{bundle.ListBusEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{busController.destroy}" value="#{bundle.ListBusDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{busController.prepareCreate}" value="#{bundle.ListBusCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListBusIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

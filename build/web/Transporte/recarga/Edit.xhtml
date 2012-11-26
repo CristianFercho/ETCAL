@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRecargaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRecargaLabel_pinTarjeta}" for="pinTarjeta" />
+                    <h:inputText id="pinTarjeta" value="#{recargaController.selected.pinTarjeta}" title="#{bundle.EditRecargaTitle_pinTarjeta}" required="true" requiredMessage="#{bundle.EditRecargaRequiredMessage_pinTarjeta}"/>
+                    <h:outputLabel value="#{bundle.EditRecargaLabel_fechaRecarga}" for="fechaRecarga" />
+                    <h:inputText id="fechaRecarga" value="#{recargaController.selected.fechaRecarga}" title="#{bundle.EditRecargaTitle_fechaRecarga}" required="true" requiredMessage="#{bundle.EditRecargaRequiredMessage_fechaRecarga}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditRecargaLabel_valorRecarga}" for="valorRecarga" />
+                    <h:inputText id="valorRecarga" value="#{recargaController.selected.valorRecarga}" title="#{bundle.EditRecargaTitle_valorRecarga}" />
+                    <h:outputLabel value="#{bundle.EditRecargaLabel_tarjeta}" for="tarjeta" />
+                    <h:selectOneMenu id="tarjeta" value="#{recargaController.selected.tarjeta}" title="#{bundle.EditRecargaTitle_tarjeta}" required="true" requiredMessage="#{bundle.EditRecargaRequiredMessage_tarjeta}">
+                        <f:selectItems value="#{tarjetaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{recargaController.update}" value="#{bundle.EditRecargaSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditRecargaViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{recargaController.prepareList}" value="#{bundle.EditRecargaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditRecargaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

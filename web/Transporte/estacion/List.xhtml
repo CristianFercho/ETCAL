@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEstacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEstacionEmpty}" rendered="#{estacionController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{estacionController.items.rowCount > 0}">
+                    <h:outputText value="#{estacionController.pagination.pageFirstItem + 1}..#{estacionController.pagination.pageLastItem + 1}/#{estacionController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{estacionController.previous}" value="#{bundle.Previous} #{estacionController.pagination.pageSize}" rendered="#{estacionController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{estacionController.next}" value="#{bundle.Next} #{estacionController.pagination.pageSize}" rendered="#{estacionController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{estacionController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstacionTitle_nombreEstacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreEstacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstacionTitle_ubicacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ubicacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstacionTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstacionTitle_idEmpleado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEmpleado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{estacionController.prepareView}" value="#{bundle.ListEstacionViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{estacionController.prepareEdit}" value="#{bundle.ListEstacionEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{estacionController.destroy}" value="#{bundle.ListEstacionDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{estacionController.prepareCreate}" value="#{bundle.ListEstacionCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListEstacionIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
